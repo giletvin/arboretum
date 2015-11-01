@@ -162,220 +162,207 @@ function collectData(&$array_data,$data){
 
 
 $array_scientific_family = array();
-$array_inflorescence = array();
-$array_couleur = array();
-$array_particularite = array();
-$array_aspect = array();
-$array_nb_petales = array();
+$array_type_aiguille = array();
+$array_type_fruit_conifere = array();
 $array_type_feuille = array();
-$array_disposition_feuille = array();
-$array_pilosite_tige = array();
-$array_pilosite_feuille = array();
+$array_bord_feuille = array();
+$array_forme_feuille = array();
+$array_caracteristique_feuille = array();
+$array_fruit = array();
 
-$repertoire_index=0;
-$doc_url_index=1;
+
 $nom_fr_1_index=2;
 $nom_fr_2_index=3;
-$nom_fr_3_index=4;
-$nom_scientifique_1_index=5;
-$nom_scientifique_2_index=6;
-$nom_en_index=7;
-$famille_index=8;
-$inflorescence_index=10;
-$couleur_1_index=12;
-$couleur_2_index=13;
-$particularite_index=15;
-$aspect_index=16;
-$nb_petale_index=17;
-$type_feuille_index=19;
-$disposition_feuille_index=20;
-$pilosite_tige_index=21;
-$pilosite_feuille_index=22;
 
-$idFleur=0;
+$nom_scientifique_1_index=4;
+$nom_scientifique_2_index=17;
+$nom_en_index=5;
+$famille_index=6;
+$is_arbuste_index=7;
+$is_conifere_index=8;
+$type_aiguille_index=9;
+$type_fruit_conifere_index=10;
+$type_feuille_index=11;
+$bord_feuille_index=12;
+$forme_feuille_index=13;
+$caracteristique_feuille_index=14;
+$fruit_index=15;
+$fruit2_index=16;
+
+
+$idArbre=0;
 $sql_queries = array();
-if (($handle = fopen("Fleurs.csv", "r")) !== FALSE) {
+if (($handle = fopen("Arboretum.csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, "|")) !== FALSE) {
-	if ($idFleur>0){
-		//attention : si on ajoute une colonne dans le csv, changer ce test !
-		if (count($data)==24&&$data[$nom_scientifique_1_index]!=''){
-			$indexes_scientific_family= collectData($array_scientific_family,$data[$famille_index]);
-			//Attention : inflorescence, plusieurs valeurs dans la colonne	
-			$indexes_inflorescence=collectData($array_inflorescence,$data[$inflorescence_index]);
-			$indexes_couleur_1=collectData($array_couleur,$data[$couleur_1_index]);
-			$indexes_couleur_2=collectData($array_couleur,$data[$couleur_2_index]);
-			$indexes_particularite=collectData($array_particularite,$data[$particularite_index]);
-			//Attention : aspect, plusieurs valeurs dans la colonne	
-			$indexes_aspect=collectData($array_aspect,$data[$aspect_index]);
-			//Attention : nb petales, plusieurs valeurs dans la colonne	
-			$indexes_nb_petale=collectData($array_nb_petales,$data[$nb_petale_index]);
-			//Attention : type de feuille: plusieurs valeurs possibles dans une colonne
-			$indexes_type_feuille=collectData($array_type_feuille,$data[$type_feuille_index]);
-			//Attention : disposition de feuille: plusieurs valeurs possibles dans une colonne
-			$indexes_disposition_feuille=collectData($array_disposition_feuille,$data[$disposition_feuille_index]);
-			//Attention : pilosité de la tige: plusieurs valeurs possibles dans une colonne
-			$indexes_pilosite_tige=collectData($array_pilosite_tige,$data[$pilosite_tige_index]);
-			//Attention : pilosité de la feuille: plusieurs valeurs possibles dans une colonne
-			$indexes_pilosite_feuille=collectData($array_pilosite_feuille,$data[$pilosite_feuille_index]);
-			/*id integer,
-			directory_name,
-			scientific_family_fk*/
-			array_push($sql_queries,"insert into fleur (id,directory_name,scientific_name,scientific_family_fk,doc_url) values (".$idFleur.",\"".trim($data[$repertoire_index])."\",\"".trim($data[$nom_scientifique_1_index])."\",".$indexes_scientific_family[0].",\"".trim($data[$doc_url_index])."\");");
-			//langues
-			array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"fr\",\"".trim($data[$nom_fr_1_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_fr_1_index])))."\",".$idFleur.",1);");
-			if ($data[$nom_fr_2_index]!=''){
-				array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"fr\",\"".trim($data[$nom_fr_2_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_fr_2_index])))."\",".$idFleur.",0);");
-			}
-			if ($data[$nom_fr_3_index]!=''){
-				array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"fr\",\"".trim($data[$nom_fr_3_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_fr_3_index])))."\",".$idFleur.",0);");
-			}
-			array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"la\",\"".trim($data[$nom_scientifique_1_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_scientifique_1_index])))."\",".$idFleur.",1);");
-			if ($data[$nom_scientifique_2_index]!=''){
-				array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"la\",\"".trim($data[$nom_scientifique_2_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_scientifique_2_index])))."\",".$idFleur.",0);");
-			}
-			if ($data[$nom_en_index]!=''){
-				array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, fleur_fk, taxon_usuel) values (\"en\",\"".trim($data[$nom_en_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_en_index])))."\",".$idFleur.",1);");
-			}
-			//inflorescence
-			if ($data[$inflorescence_index]!=''){
-				foreach ($indexes_inflorescence as $key => $value){
-					array_push($sql_queries,"insert into fleur_inflorescence (fleur_fk, inflorescence_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//couleur
-			if ($data[$couleur_1_index]!=''){
-				array_push($sql_queries,"insert into fleur_couleur (fleur_fk, couleur_fk) values (".$idFleur.",".$indexes_couleur_1[0].");");
-			}
-			if ($data[$couleur_2_index]!=''){
-				array_push($sql_queries,"insert into fleur_couleur (fleur_fk, couleur_fk) values (".$idFleur.",".$indexes_couleur_2[0].");");
-			}
-			//particularite
-			if ($data[$particularite_index]!=''){
-				foreach ($indexes_particularite as $key => $value){
-					array_push($sql_queries,"insert into fleur_particularite (fleur_fk, particularite_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//aspect
-			if ($data[$aspect_index]!=''){
-				foreach ($indexes_aspect as $key => $value){
-					array_push($sql_queries,"insert into fleur_aspect (fleur_fk, aspect_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//nb_petale
-			if ($data[$nb_petale_index]!=''){
-				foreach ($indexes_nb_petale as $key => $value){
-					array_push($sql_queries,"insert into fleur_nb_petale (fleur_fk, nb_petale_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//type_feuille
-			if ($data[$type_feuille_index]!=''){
-				foreach ($indexes_type_feuille as $key => $value){
-					array_push($sql_queries,"insert into fleur_type_feuille (fleur_fk, type_feuille_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//disposition_feuille
-			if ($data[$disposition_feuille_index]!=''){
-				foreach ($indexes_disposition_feuille as $key => $value){
-					array_push($sql_queries,"insert into fleur_disposition_feuille (fleur_fk, disposition_feuille_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//pilosite_tige
-			if ($data[$pilosite_tige_index]!=''){
-				foreach ($indexes_pilosite_tige as $key => $value){
-					array_push($sql_queries,"insert into fleur_pilosite_tige (fleur_fk, pilosite_tige_fk) values (".$idFleur.",".$value.");");
-				}
-			}
-			//pilosite_feuille
-			if ($data[$pilosite_feuille_index]!=''){
-				foreach ($indexes_pilosite_feuille as $key => $value){
-					array_push($sql_queries,"insert into fleur_pilosite_feuille (fleur_fk, pilosite_feuille_fk) values (".$idFleur.",".$value.");");
-				}
-			}
+	//attention : si on ajoute une colonne dans le csv, changer ce test !
+	if (count($data)==25&&$data[$nom_scientifique_1_index]!=''){
+print_r($data);
+		$indexes_scientific_family= collectData($array_scientific_family,$data[$famille_index]);
+		//gestion des conifères
+		if ($data[$type_aiguille_index]!=''&&$data[$type_fruit_conifere_index]!=''){
+			$indexes_type_aiguille=collectData($array_type_aiguille,$data[$type_aiguille_index]);
+			$indexes_fruit_conifere=collectData($array_couleur,$data[$type_fruit_conifere_index]);
+		}
+		else{
+			//pas un conifère
+			$indexes_fruit_conifere=array();
+			array_push($indexes_fruit_conifere,-1);
+			$indexes_type_aiguille=array();
+			array_push($indexes_type_aiguille,-1);
+		}
+		$indexes_type_feuille=collectData($array_type_feuille,$data[$type_feuille_index]);
+		$indexes_bord_feuille=collectData($array_bord_feuille,$data[$bord_feuille_index]);
+		$indexes_forme_feuille=collectData($array_forme_feuille,$data[$forme_feuille_index]);
+		$indexes_caracteristique_feuille=collectData($array_caracteristique_feuille,$data[$caracteristique_feuille_index]);
 
+
+		//collecter les donnees sur deux colonnes distinctes pour les fruits
+		$indexes_fruit=collectData($array_fruit,$data[$fruit_index]);
+		$indexes_fruit2=collectData($array_fruit,$data[$fruit2_index]);
+
+		$is_conifere=(trim($data[$is_arbuste_index])=='conifère' ? 1:0);
+		$is_arbuste=(trim($data[$is_arbuste_index])=='arbuste' ? 1:0);
+
+
+		array_push($sql_queries,"insert into arbre (id,scientific_name,scientific_family_fk,is_arbuste,is_conifere,type_aiguille_fk,type_fruit_conifere_fk) values (".$idArbre.",\"".trim($data[$nom_scientifique_1_index])."\",".$indexes_scientific_family[0].",".$is_arbuste.",".$is_conifere.",".$indexes_type_aiguille[0].",".$indexes_fruit_conifere[0].");");
+		//langues
+		array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"fr\",\"".trim($data[$nom_fr_1_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_fr_1_index])))."\",".$idArbre.",1);");
+
+		//$nom fr 2 : multivalué!
+		if ($data[$nom_fr_2_index]!=''){
+			$data_tab = explode(",", $data[$nom_fr_2_index]);
+			foreach ($data_tab as $key => $value){
+				array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"fr\",\"".$value."\",\"".strtolower(removeDiacritics(trim($value)))."\",".$idArbre.",0);");
+			}
 		}
-		else {
-			//echo "erreur sur la ligne : ".$idFleur. " ". print_r($data);
+
+		//nom scientifique 1
+		array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"la\",\"".trim($data[$nom_scientifique_1_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_scientifique_1_index])))."\",".$idArbre.",1);");
+
+		//nom scientifique 2
+		if ($data[$nom_scientifique_2_index]!=''){
+			array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"la\",\"".trim($data[$nom_scientifique_2_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_scientifique_2_index])))."\",".$idArbre.",0);");
 		}
+
+		//nom anglais
+		if ($data[$nom_en_index]!=''){
+			array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"en\",\"".trim($data[$nom_en_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_en_index])))."\",".$idArbre.",1);");
+		}
+
+		//type_feuille
+		if ($data[$type_feuille_index]!=''){
+			foreach ($indexes_type_feuille as $key => $value){
+				array_push($sql_queries,"insert into arbre_type_feuille (arbre_fk, type_feuille_fk) values (".$idArbre.",".$value.");");
+			}
+		}
+
+		//bord_feuille
+		if ($data[$bord_feuille_index]!=''){
+			foreach ($indexes_bord_feuille as $key => $value){
+				array_push($sql_queries,"insert into arbre_bord_feuille (arbre_fk, bord_feuille_fk) values (".$idArbre.",".$value.");");
+			}
+		}
+
+		//forme_feuille
+		if ($data[$forme_feuille_index]!=''){
+			foreach ($indexes_forme_feuille as $key => $value){
+				array_push($sql_queries,"insert into arbre_forme_feuille (arbre_fk, forme_feuille_fk) values (".$idArbre.",".$value.");");
+			}
+		}
+
+		//caracteristique_feuille
+		if ($data[$caracteristique_feuille_index]!=''){
+			foreach ($indexes_caracteristique_feuille as $key => $value){
+				array_push($sql_queries,"insert into arbre_caracteristique_feuille (arbre_fk, caracteristique_feuille_fk) values (".$idArbre.",".$value.");");
+			}
+		}
+
+
+		//fruit
+		if ($data[$fruit_index]!=''){
+			foreach ($indexes_fruit as $key => $value){
+				array_push($sql_queries,"insert into arbre_fruit (arbre_fk, fruit_fk) values (".$idArbre.",".$value.");");
+			}
+		}
+		
+
 	}
-	$idFleur++;
+	else {
+		//echo "erreur sur la ligne : ".$idArbre. " ". print_r($data);
+	}
+
+	$idArbre++;
     }
     fclose($handle);
 }
 
 ///////////////////////////////////
 //ECRITURE DES DONNEES REF
+/*
+$array_scientific_family = array();
+$array_type_aiguille = array();
+$array_type_fruit_conifere = array();
+$array_type_feuille = array();
+$array_bord_feuille = array();
+$array_forme_feuille = array();
+$array_caracteristique_feuille = array();
+$array_fruit = array();
+*/
 $handlerTableReferentiel = fopen('generate_insert_data_table_referentiel.sql', 'w');
 
 foreach ($array_scientific_family as $key => $value){
-	//commandes
 	$sql_insert_query = "INSERT INTO  scientific_family(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
 
 
-foreach ($array_inflorescence as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO inflorescence(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+foreach ($array_type_aiguille as $key => $value){
+	$sql_insert_query = "INSERT INTO type_aiguille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
 
 
-foreach ($array_couleur as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO couleur(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+foreach ($array_type_fruit_conifere as $key => $value){
+	$sql_insert_query = "INSERT INTO type_fruit_conifere(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
 
-foreach ($array_particularite as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO particularite(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
-	fwrite($handlerTableReferentiel, $sql_insert_query);
-}
-
-foreach ($array_aspect as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO aspect(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
-	fwrite($handlerTableReferentiel, $sql_insert_query);
-}
-
-foreach ($array_nb_petales as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO nb_petale(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
-	fwrite($handlerTableReferentiel, $sql_insert_query);
-}
 foreach ($array_type_feuille as $key => $value){
-	//commandes
 	$sql_insert_query = "INSERT INTO type_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
-foreach ($array_disposition_feuille as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO disposition_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+
+foreach ($array_bord_feuille as $key => $value){
+	$sql_insert_query = "INSERT INTO bord_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
-foreach ($array_pilosite_tige as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO pilosite_tige(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+
+foreach ($array_forme_feuille as $key => $value){
+	$sql_insert_query = "INSERT INTO forme_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
-foreach ($array_pilosite_feuille as $key => $value){
-	//commandes
-	$sql_insert_query = "INSERT INTO pilosite_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+foreach ($array_caracteristique_feuille as $key => $value){
+	$sql_insert_query = "INSERT INTO caracteristique_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
+foreach ($array_fruit as $key => $value){
+	$sql_insert_query = "INSERT INTO fruit(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+	fwrite($handlerTableReferentiel, $sql_insert_query);
+}
+
 fclose($handlerTableReferentiel);
 
 
 ///////////////////////////////////
-//ECRITURE DES DONNEES FLEURS
+//ECRITURE DES DONNEES arbreS
 //print_r($sql_queries);
-$handlerTableFleurs = fopen('generate_insert_data_table_fleurs.sql', 'w');
+$handlerTablearbres = fopen('generate_insert_data_table_arbres.sql', 'w');
 foreach ($sql_queries as $key => $value){
-	fwrite($handlerTableFleurs, $value."\n");
+	fwrite($handlerTablearbres, $value."\n");
 }
 
 
-fclose($handlerTableFleurs);
+fclose($handlerTablearbres);
 
 
 

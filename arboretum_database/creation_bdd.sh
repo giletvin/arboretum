@@ -6,24 +6,15 @@
 #1 lecture du CSV et creation d'un script SQL d'insertion de données
 php create_insert_data_sql_file.php
 
-export DATABASE_NAME=flore.jpg
+export DATABASE_NAME=arboretum.jpg
 rm $DATABASE_NAME
 cat create_tables.sql | sqlite3 $DATABASE_NAME
 cat generate_insert_data_table_referentiel.sql | sqlite3 $DATABASE_NAME
-cat generate_insert_data_table_fleurs.sql | sqlite3 $DATABASE_NAME
-cat update_libelles.sql | sqlite3 $DATABASE_NAME
+cat generate_insert_data_table_arbres.sql | sqlite3 $DATABASE_NAME
+#cat update_libelles.sql | sqlite3 $DATABASE_NAME
 
 
 sqlite3 $DATABASE_NAME 'VACUUM;'
 
 sqlite3 $DATABASE_NAME 'ANALYZE;'
-
-
-
-
-
-
-
-
-
 
