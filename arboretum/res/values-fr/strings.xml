@@ -2,7 +2,7 @@
 <resources>
 
     <!-- The name of the application. -->
-    <string name="app_name">Flore de poche</string>
+    <string name="app_name">Arboretum</string>
 
     <!-- The hint text that appears in the search box. -->
     <string name="search_hint">Recherche dans la base</string>

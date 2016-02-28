@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.flore"
+    package="fr.arboretum"
     android:installLocation="auto"
     android:versionCode="2"
     android:versionName="1.0.1" >
@@ -24,7 +24,7 @@
         android:icon="@drawable/ic_home"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name="fr.flore_de_poche.ui.activity.HomeActivity_">
+        <activity android:name="fr.arboretum.ui.activity.HomeActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,39 +33,39 @@
         </activity>
 
         <!-- The default activity of the app; displays search results. -->
-        <activity android:label="@string/app_name" android:name="fr.flore_de_poche.ui.activity.MainActivity_" />
+        <activity android:label="@string/app_name" android:name="fr.arboretum.ui.activity.MainActivity_" />
 
 
         <!-- Preferences activity -->
         <activity
-            android:name="fr.flore_de_poche.ui.activity.ApplicationPreferenceActivity_"
+            android:name="fr.arboretum.ui.activity.ApplicationPreferenceActivity_"
             android:label="@string/preferences"
             android:noHistory="true" />
         <!-- about activity -->
         <activity
-            android:name="fr.flore_de_poche.ui.activity.AboutActivity_"
+            android:name="fr.arboretum.ui.activity.AboutActivity_"
             android:label="@string/about" />
         <activity
-            android:name="fr.flore_de_poche.ui.activity.HelpActivity_"
+            android:name="fr.arboretum.ui.activity.HelpActivity_"
             android:label="@string/help" />
         <activity
-            android:name="fr.flore_de_poche.ui.activity.SubjectInfoActivity_"
+            android:name="fr.arboretum.ui.activity.SubjectInfoActivity_"
             android:label="@string/subject_info" />
 
         <!-- full size image activity -->
         <activity
-            android:name="fr.flore_de_poche.ui.activity.ScrollableImageActivity_"
+            android:name="fr.arboretum.ui.activity.ScrollableImageActivity_"
             android:label="@string/subject_image_big"
             android:noHistory="true" />
       
         <activity
-            android:name="fr.flore_de_poche.ui.activity.MultiCriteriaSearchActivity_"
+            android:name="fr.arboretum.ui.activity.MultiCriteriaSearchActivity_"
             android:label="@string/menu_search_multi" />
         <activity
-            android:name="fr.flore_de_poche.ui.activity.AddCustomMediaActivity_"
+            android:name="fr.arboretum.ui.activity.AddCustomMediaActivity_"
             android:label="@string/add_custom_media_title" />
         <activity
-            android:name="fr.flore_de_poche.ui.activity.HelpHtmlActivity_"
+            android:name="fr.arboretum.ui.activity.HelpHtmlActivity_"
             android:label="@string/help" />
     </application>
 

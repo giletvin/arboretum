@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res/fr.flore"
+    xmlns:custom="http://schemas.android.com/apk/res/fr.arboretum"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_colour_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 custom:spinnerPrompt="@string/search_colour_choose"
                 custom:text="@string/search_colour" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_nb_petale_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 custom:spinnerPrompt="@string/search_nb_petale_choose"
                 custom:text="@string/search_nb_petale" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_particularite_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 custom:spinnerPrompt="@string/search_particularite_choose"
                 custom:text="@string/search_particularite" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_aspect_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 custom:spinnerPrompt="@string/search_aspect_choose"
                 custom:text="@string/search_aspect" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_leaf_type_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 custom:spinnerPrompt="@string/search_leaf_type_choose"
                 custom:text="@string/search_leaf_type" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_leaf_disposition_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 custom:spinnerPrompt="@string/search_leaf_disposition_choose"
                 custom:text="@string/search_leaf_disposition" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_pilosite_tige_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 custom:spinnerPrompt="@string/search_pilosite_tige_choose"
                 custom:text="@string/search_pilosite_tige" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_pilosite_feuille_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                 custom:spinnerPrompt="@string/search_pilosite_feuille_choose"
                 custom:text="@string/search_pilosite_feuille" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_inflorescence_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 custom:spinnerPrompt="@string/search_inflorescence_choose"
                 custom:text="@string/search_inflorescence" />
 
-            <fr.flore_de_poche.ui.multicriteriasearch.MultiCriteriaSelectField
+            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_scientific_family_field"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
