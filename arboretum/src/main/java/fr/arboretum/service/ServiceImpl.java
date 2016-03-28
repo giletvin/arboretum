@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.database.Cursor;
 import android.provider.BaseColumns;
+import fr.arboretum.R;
 import fr.arboretum.bo.MultiCriteriaSearchFormBean;
 import fr.arboretum.bo.SimpleSubject;
 import fr.arboretum.bo.Subject;
@@ -23,7 +24,6 @@ import fr.arboretum.helper.Constants;
 import fr.arboretum.helper.StringHelper;
 import fr.arboretum.helper.SupportedLanguage;
 import fr.arboretum.ui.picture.PictureHelper;
-import fr.arboretum.R;
 
 /**
  * The Class OrnidroidServiceImpl.
@@ -479,16 +479,13 @@ public class ServiceImpl implements IService {
 
 			final int directoryNameIndex = cursor
 					.getColumnIndexOrThrow(IDAO.DIRECTORY_NAME_COLUMN);
-			final int urlDocIndex = cursor
-					.getColumnIndexOrThrow(IDAO.DOC_URL_COLUMN);
 
 			final SubjectFactoryImpl subjectFactory = new SubjectFactoryImpl();
 			this.currentSubject = subjectFactory.createSubject(
 					cursor.getInt(idIndex), cursor.getString(taxonIndex),
 					cursor.getString(scientificNameIndex),
 
-					cursor.getString(directoryNameIndex),
-					cursor.getString(urlDocIndex));
+					cursor.getString(directoryNameIndex));
 			// when a new subject arrives, clear the hashmap of stored bitmaps
 			PictureHelper.resetLoadedBitmaps();
 			cursor.close();
@@ -548,8 +545,7 @@ public class ServiceImpl implements IService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * fr.arboretum.service.IOrnidroidService#getMatchingBirds(java.lang
+	 * @see fr.arboretum.service.IOrnidroidService#getMatchingBirds(java.lang
 	 * .String)
 	 */
 	public List<SimpleSubject> getMatchingSubjects(String query) {

@@ -49,7 +49,7 @@ public class BasicConstants {
 	/**
 	 * The D b_ name. It ends with a .jpg extension although it is a sqlite file
 	 */
-	public final static String DB_NAME = "flore.jpg";
+	public final static String DB_NAME = "arboretum.jpg";
 
 	/** The Constant EMPTY_STRING. */
 	public static final String EMPTY_STRING = "";
@@ -71,14 +71,13 @@ public class BasicConstants {
 	public static final String MP3_PATH = "MP3_PATH";
 	/** The Constant NO_MEDIA_FILENAME. */
 	public static final String NO_MEDIA_FILENAME = ".nomedia";
-	/** The Constant SLASH_STRING. */
 	public static final String SLASH_STRING = "/";
 
-	/** The Constant DASH_STRING. */
 	public static final String DASH_STRING = "-";
 
-	/** The Constant STAR_STRING. */
 	public static final String STAR_STRING = "*";
+
+	public static final String DOT_STRING = ".";
 
 	/**
 	 * Gets the nb of files in package.

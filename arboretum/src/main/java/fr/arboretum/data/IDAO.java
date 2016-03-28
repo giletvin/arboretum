@@ -23,7 +23,7 @@ public interface IDAO {
 	public static final String FLEUR_PILOSITE_TIGE = "fleur_pilosite_tige";
 	public static final String FLEUR_PARTICULARITE_TABLE = "fleur_particularite";
 
-	public static final String SUBJECT_TABLE = "fleur";
+	public static final String SUBJECT_TABLE = "arbre";
 
 	/**
 	 * The Constant CATEGORY_COLUMN. * @deprecated
@@ -39,12 +39,7 @@ public interface IDAO {
 	 * 
 	 */
 	public static final String INFLORESCENCE_TABLE = "inflorescence";
-	/**
-	 * The Constant DESCRIPTION_COLUMN.
-	 * 
-	 * @deprecated
-	 */
-	public static final String DESCRIPTION_COLUMN = "description";
+
 	/** The Constant DIRECTORY_NAME_COLUMN. */
 	public static final String DIRECTORY_NAME_COLUMN = "directory_name";
 
@@ -77,8 +72,6 @@ public interface IDAO {
 
 	/** The Constant TAXON. */
 	public static final String TAXON = "taxon";
-
-	public static final String DOC_URL_COLUMN = "doc_url";
 
 	Cursor getLeafTypes();
 
@@ -147,17 +140,6 @@ public interface IDAO {
 	Cursor getPilositeTige();
 
 	Cursor getPilositeFeuille();
-
-	/**
-	 * gets the countries where the bird can be seen
-	 * 
-	 * @param id
-	 *            the id of the bird
-	 * @return cursor on the results of the query. Can be null if something goes
-	 *         wrong
-	 * @deprecated
-	 */
-	Cursor getGeographicDistribution(int id);
 
 	/**
 	 * Gets the matching birds.

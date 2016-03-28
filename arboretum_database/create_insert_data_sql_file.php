@@ -130,7 +130,16 @@ function normalizeString($string){
 	return ucfirst(strtolower(trim($string)));
 }
 
+/**
+* nettoyage du nom français de l'arbre pour créer le répertoire correspondant.
+* le répertoire de l'arbre est le nom francais sans les caractères accentués, sans apostrophe et sans espace, remplacés par des _
+*/
+function nettoie_nom($string){
+	return trim(strtolower(str_replace(array (
+		" ",
+		"'"),array("_","_"),removeDiacritics($string))));
 
+}
 
 
 /*
@@ -224,7 +233,7 @@ print_r($data);
 		$is_arbuste=(trim($data[$is_arbuste_index])=='arbuste' ? 1:0);
 
 
-		array_push($sql_queries,"insert into arbre (id,scientific_name,scientific_family_fk,is_arbuste,is_conifere,type_aiguille_fk,type_fruit_conifere_fk) values (".$idArbre.",\"".trim($data[$nom_scientifique_1_index])."\",".$indexes_scientific_family[0].",".$is_arbuste.",".$is_conifere.",".$indexes_type_aiguille[0].",".$indexes_fruit_conifere[0].");");
+		array_push($sql_queries,"insert into arbre (id,directory_name,scientific_name,scientific_family_fk,is_arbuste,is_conifere,type_aiguille_fk,type_fruit_conifere_fk) values (".$idArbre.",\"".nettoie_nom(trim($data[$nom_fr_1_index]))."\",\"".trim($data[$nom_scientifique_1_index])."\",".$indexes_scientific_family[0].",".$is_arbuste.",".$is_conifere.",".$indexes_type_aiguille[0].",".$indexes_fruit_conifere[0].");");
 		//langues
 		array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"fr\",\"".trim($data[$nom_fr_1_index])."\",\"".strtolower(removeDiacritics(trim($data[$nom_fr_1_index])))."\",".$idArbre.",1);");
 

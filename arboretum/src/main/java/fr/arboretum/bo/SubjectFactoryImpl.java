@@ -14,14 +14,12 @@ public class SubjectFactoryImpl {
 	}
 
 	public Subject createSubject(final Integer id, final String taxon,
-			final String scientificName, final String directoryName,
-			String docUrl) {
+			final String scientificName, final String directoryName) {
 		final Subject subject = new Subject();
 		subject.setId(id);
 		subject.setTaxon(taxon);
 		subject.setScientificName(scientificName);
 		subject.setDirectoryName(directoryName);
-		subject.setDocUrl(docUrl);
 		return subject;
 	}
 

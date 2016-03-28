@@ -231,7 +231,7 @@ public class DAOImpl implements IDAO {
 			query.append(LANG_COLUMN_NAME);
 			query.append(Constants.COMMA_STRING);
 			query.append(TAXON);
-			query.append(" from taxonomy where fleur_fk=");
+			query.append(" from taxonomy where arbre_fk=");
 			query.append(id);
 			query.append(ORDER_BY);
 			query.append(LANG_COLUMN_NAME);
@@ -297,8 +297,7 @@ public class DAOImpl implements IDAO {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * fr.arboretum.data.IOrnidroidDAO#getMultiSearchCriteriaCountResults
+	 * @see fr.arboretum.data.IOrnidroidDAO#getMultiSearchCriteriaCountResults
 	 * (fr .ornidroid.bo.MultiCriteriaSearchFormBean)
 	 */
 	public int getMultiSearchCriteriaCountResults(
@@ -617,18 +616,18 @@ public class DAOImpl implements IDAO {
 			final SQLiteDatabase db = this.dataBaseOpenHelper
 					.getReadableDatabase();
 			final StringBuilder query = new StringBuilder();
-			query.append("select fleur.id as ");
+			query.append("select arbre.id as ");
 			query.append(BaseColumns._ID);
 			query.append(",scientific_name as ");
 			query.append(SearchManager.SUGGEST_COLUMN_TEXT_2);
 			query.append(",taxon as ");
 			query.append(SearchManager.SUGGEST_COLUMN_TEXT_1);
-			query.append(", fleur.id as ");
-			query.append(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
 			query.append(Constants.COMMA_STRING);
+			query.append(SUBJECT_TABLE);
+			query.append(BasicConstants.DOT_STRING);
 			query.append(DIRECTORY_NAME_COLUMN);
-			query.append(Constants.COMMA_STRING);
-			query.append(DOC_URL_COLUMN);
+			query.append(", arbre.id as ");
+			query.append(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID);
 			query.append(FROM);
 			query.append(FTS_VIRTUAL_TABLE_TAXONOMY);
 			query.append(",");
@@ -649,7 +648,7 @@ public class DAOImpl implements IDAO {
 				query.append("\"");
 			}
 			query.append(sqlDynamicFragments.getWhereClause());
-			query.append(" and fleur.id=taxonomy.fleur_fk");
+			query.append(" and arbre.id=taxonomy.arbre_fk");
 			query.append(handleSetOfLanguagesinSqlQuery(Constants
 					.getOrnidroidSearchLanguages()));
 
@@ -664,8 +663,7 @@ public class DAOImpl implements IDAO {
 				return null;
 			}
 		} catch (final SQLException e) {
-
-			// Log.e(Constants.LOG_TAG, "Exception sql " + e);
+			Log.e(Constants.LOG_TAG, "Exception sql " + e);
 		} finally {
 			this.dataBaseOpenHelper.close();
 		}
@@ -696,53 +694,7 @@ public class DAOImpl implements IDAO {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fr.arboretum.data.IOrnidroidDAO#getGeographicDistribution(int)
-	 */
-	public Cursor getGeographicDistribution(int id) {
-		Cursor cursor = null;
-		try {
-			final SQLiteDatabase db = this.dataBaseOpenHelper
-					.getReadableDatabase();
-			final StringBuilder query = new StringBuilder();
-			String countryNameColumn = NAME_COLUMN_NAME
-					+ Constants.UNDERSCORE_STRING
-					+ I18nHelper.getLang().getCode();
-			query.append(SELECT);
-			query.append(countryNameColumn);
-			query.append(AS);
-			query.append(NAME_COLUMN_NAME);
-			query.append(FROM);
-			query.append(INFLORESCENCE_TABLE);
-			query.append(INNER_JOIN);
-			query.append(FLEUR_INFLORESCENCE_TABLE);
-			query.append(" on country_code=code");
-			query.append(WHERE);
-			query.append("bird_fk=");
-			query.append(id);
-			query.append(ORDER_BY);
-			query.append(NAME_COLUMN_NAME);
-
-			final String[] selectionArgs = null;
-			cursor = db.rawQuery(query.toString(), selectionArgs);
-			if (cursor == null) {
-				return null;
-			} else if (!cursor.moveToFirst()) {
-				cursor.close();
-				return null;
-			}
-		} catch (final SQLException e) {
-			// Log.e(Constants.LOG_TAG, "Exception sql " + e);
-		} finally {
-			this.dataBaseOpenHelper.close();
-		}
-		return cursor;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * fr.arboretum.data.IOrnidroidDAO#getMatchingBirds(java.lang.String)
+	 * @see fr.arboretum.data.IOrnidroidDAO#getMatchingBirds(java.lang.String)
 	 */
 	public List<SimpleSubject> getMatchingSubjects(String pQuery) {
 		List<SimpleSubject> results = new ArrayList<SimpleSubject>();

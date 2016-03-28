@@ -1,9 +1,10 @@
 -- creation de la base 
--- creation de la table taxonomy en jointure avec la table fleur
+-- creation de la table taxonomy en jointure avec la table arbre
 
 
 create table arbre(
 	id integer,
+	directory_name,
 	scientific_name,
 	scientific_family_fk,
 	is_arbuste,

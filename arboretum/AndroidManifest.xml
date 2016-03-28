@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.arboretum"
     android:installLocation="auto"
-    android:versionCode="2"
-    android:versionName="1.0.1" >
+    android:versionCode="1"
+    android:versionName="1.0.0" >
     <!-- ANDROID DEBUGGABLE !! -->
     <uses-sdk
         android:minSdkVersion="11"

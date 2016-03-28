@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Environment;
 import android.widget.TextView;
+import fr.arboretum.R;
 import fr.arboretum.helper.ApplicationException;
 import fr.arboretum.helper.BasicConstants;
 import fr.arboretum.helper.StringHelper;
@@ -20,12 +21,6 @@ import fr.arboretum.service.IIOService;
 import fr.arboretum.service.IOServiceImpl;
 import fr.arboretum.service.IService;
 import fr.arboretum.service.ServiceFactory;
-import fr.arboretum.R;
-import fr.arboretum.ui.activity.AboutActivity_;
-import fr.arboretum.ui.activity.ApplicationPreferenceActivity_;
-import fr.arboretum.ui.activity.HelpActivity_;
-import fr.arboretum.ui.activity.MainActivity_;
-import fr.arboretum.ui.activity.MultiCriteriaSearchActivity_;
 import fr.arboretum.ui.preferences.MyPrefs_;
 
 /**
@@ -122,7 +117,7 @@ public class HomeActivity extends AbstractActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		checkOrnidroidHomeDirectory();
+		checkHomeDirectory();
 		String releaseNotes = service.getReleaseNotes();
 		if (StringHelper.isNotBlank(releaseNotes)) {
 			Dialog dialog = new AlertDialog.Builder(this)
@@ -142,9 +137,9 @@ public class HomeActivity extends AbstractActivity {
 	}
 
 	/**
-	 * Check ornidroid home directory.
+	 * Check home directory.
 	 */
-	private void checkOrnidroidHomeDirectory() {
+	private void checkHomeDirectory() {
 		try {
 			this.iOService.checkOrnidroidHome(myPrefs.ornidroidHome().getOr(
 					Environment.getExternalStorageDirectory().getAbsolutePath()

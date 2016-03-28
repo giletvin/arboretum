@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
+import fr.arboretum.R;
 import fr.arboretum.helper.BasicConstants;
 import fr.arboretum.helper.Constants;
 import fr.arboretum.helper.StringHelper;
-import fr.arboretum.R;
 
 /**
  * The Class DownloadConstants.
@@ -15,7 +15,7 @@ import fr.arboretum.R;
 public class DownloadConstants {
 
 	/** The Constant DEFAULT_DOWNLOAD_SITE. */
-	private static final String DEFAULT_DOWNLOAD_SITE = "http://ornidroid.free.fr/flore";
+	private static final String DEFAULT_DOWNLOAD_SITE = "http://ornidroid.free.fr/arboretum";
 
 	/** The Constant DOWNLOAD_SITE_PROPERTY_KEY. */
 	private static final String DOWNLOAD_SITE_PROPERTY_KEY = "ornidroid_download_site";
