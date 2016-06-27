@@ -239,7 +239,7 @@ if (($handle = fopen("Arboretum.csv", "r")) !== FALSE) {
 
 			//$nom fr 2 : multivalué!
 			if ($data[$nom_fr_2_index]!=''){
-				$data_tab = explode(",", $data[$nom_fr_2_index]);
+				$data_tab = explode(";", $data[$nom_fr_2_index]);
 				foreach ($data_tab as $key => $value){
 					array_push($sql_queries,"insert into taxonomy (lang, taxon, searched_taxon, arbre_fk, taxon_usuel) values (\"fr\",\"".$value."\",\"".strtolower(removeDiacritics(trim($value)))."\",".$idArbre.",0);");
 				}

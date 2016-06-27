@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-export DATABASE_NAME=../flore_database/flore.jpg
+export DATABASE_NAME=../arboretum_database/arboretum.jpg
 export WIKIPEDIA_ROOT_DIR=wikipedia
 export WIKIPEDIA_ROOT_DIR_FR=$WIKIPEDIA_ROOT_DIR/fr/
 export WIKIPEDIA_ROOT_DIR_EN=$WIKIPEDIA_ROOT_DIR/en/
@@ -12,12 +12,12 @@ mkdir -p $WIKIPEDIA_ROOT_DIR_EN
 
 #echo 'Ulex europaeus'> names.txt
 #echo 'Trifolium subterraneum' >> names.txt
-#echo 'select scientific_name from fleur;'|sqlite3 $DATABASE_NAME >names.txt
+echo 'select scientific_name from arbre;'|sqlite3 $DATABASE_NAME >names.txt
 
 while read line
 do
 	#recherche du 2e nom latin au cas ou
-	scientific_name_2=`echo "select taxon from taxonomy where lang='la' and taxon!='$line' and fleur_fk=(select fleur_fk from taxonomy where taxon='$line');"|sqlite3 $DATABASE_NAME`
+	scientific_name_2=`echo "select taxon from taxonomy where lang='la' and taxon!='$line' and arbre_fk=(select arbre_fk from taxonomy where taxon='$line');"|sqlite3 $DATABASE_NAME`
 
 	scientific_name=`echo $line | sed 's/\ /_/g'`
 	#rm $scientific_name*
