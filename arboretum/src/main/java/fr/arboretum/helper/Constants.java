@@ -12,10 +12,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
+import fr.arboretum.R;
 import fr.arboretum.bo.MediaFileType;
 import fr.arboretum.bo.Subject;
 import fr.arboretum.ui.preferences.ListPreferenceMultiSelect;
-import fr.arboretum.R;
 
 /**
  * The Class Constants. This file has imports from android sdk packages and thus
@@ -30,14 +30,11 @@ public class Constants extends BasicConstants {
 	/** Ornidroid home change in progress */
 	public static boolean ORNIDROID_HOME_CHANGING = false;
 
-	/** The Constant ORNIDROID_DIRECTORY_NAME. */
-	public static final String ORNIDROID_DIRECTORY_NAME = "flore";
-
 	/** The CONTEXT. */
 	private static Context CONTEXT;
 
 	/** The Constant ORNIDROID_PREFERENCES_FILE_NAME. */
-	private static final String ORNIDROID_PREFERENCES_FILE_NAME = "fr.flore_preferences";
+	private static final String ORNIDROID_PREFERENCES_FILE_NAME = "fr.arboretum_preferences";
 
 	/** The Constant ORNIDROID_SEARCH_LANG_DEFAULT_VALUE. */
 	private static final String ORNIDROID_SEARCH_LANG_DEFAULT_VALUE = SupportedLanguage.FRENCH
@@ -225,7 +222,7 @@ public class Constants extends BasicConstants {
 	 */
 	public static final String getOrnidroidHomeDefaultValue() {
 		return Environment.getExternalStorageDirectory().getAbsolutePath()
-				+ File.separator + ORNIDROID_DIRECTORY_NAME;
+				+ File.separator + APPLICATION_DIRECTORY;
 	}
 
 	/**

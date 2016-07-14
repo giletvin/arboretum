@@ -19,8 +19,10 @@ public class BasicConstants {
 	public final static int NAMES_TAB = 2;
 	public static final int DEFAULT_EMPTY_VALUE = -1;
 
+	// TODO : a mettre à jour
 	private static final int FILES_COUNT_WIKIPEDIA_PACKAGE = 911;
 
+	// TODO : a mettre à jour
 	private static final int FILES_COUNT_PICTURE_PACKAGE = 9548;
 
 	public static final String DIRECTORY_PARAMETER_NAME = "DIRECTORY";
@@ -60,12 +62,12 @@ public class BasicConstants {
 	/** The Constant IMAGES_DIRECTORY. */
 	public static final String IMAGES_DIRECTORY = "images";
 
-	public static final String APPLICATION_DIRECTORY = "flore";
+	public static final String APPLICATION_DIRECTORY = "arboretum";
 
 	/** The Constant WIKIPEDIA_DIRECTORY. */
 	public static final String WIKIPEDIA_DIRECTORY = "wikipedia";
 	/** The Constant LOG_TAG. */
-	public static final String LOG_TAG = "Flore";
+	public static final String LOG_TAG = "Arboretum";
 
 	/** The Constant MP3_PATH. */
 	public static final String MP3_PATH = "MP3_PATH";

@@ -398,12 +398,6 @@ public class ServiceImpl implements IService {
 		return this.pilositeFeuilleList;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.arboretum.service.IOrnidroidService#getWikipediaLink(fr.
-	 * flore_de_poche. bo.Bird)
-	 */
 	public String getWikipediaLink(final Subject currentSubject,
 			final SupportedLanguage lang) {
 		final StringBuffer sbuf = new StringBuffer();
