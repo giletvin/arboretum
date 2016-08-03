@@ -157,7 +157,8 @@ public class DAOImpl implements IDAO {
 	 * @see fr.arboretum.data.IOrnidroidDAO#getBird(java.lang.String)
 	 */
 	public Cursor getSubject(final String rowId) {
-		final String whereClause = WHERE + SUBJECT_TABLE + ".id = ?";
+		final String whereClause = WHERE + SUBJECT_TABLE
+				+ ".id = ? and taxonomy.taxon_usuel=1";
 		final String[] selectionArgs = new String[] { rowId };
 
 		return query(new SqlDynamicFragments(whereClause,
