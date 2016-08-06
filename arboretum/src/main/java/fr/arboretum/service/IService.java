@@ -64,53 +64,12 @@ public interface IService {
 	Integer getScientificFamilyId(String pScientifFamilyName);
 
 	/**
-	 * Gets the colour id.
-	 * 
-	 * @param colourName
-	 *            the colour name
-	 * @return the feather colour id
-	 */
-	Integer getColourId(String colourName);
-
-	/**
-	 * Gets the colours.
-	 * 
-	 * @return the colours
-	 */
-	List<String> getColours();
-
-	List<String> getInflorescences();
-
-	Integer getInflorescenceId(String inflorescenceName);
-
-	List<String> getParticularites();
-
-	Integer getParticulariteId(String particulariteName);
-
-	/**
 	 * Gets the current subject. If a previous call to show subject detail was
 	 * already done, get the subject without querying the db
 	 * 
 	 * @return the current subject
 	 */
 	Subject getCurrentSubject();
-
-	/**
-	 * Gets the aspect id.
-	 * 
-	 * @param aspectName
-	 *            the aspect
-	 * @return the aspect id
-	 * 
-	 */
-	Integer getAspectId(String aspectName);
-
-	/**
-	 * Gets the aspects.
-	 * 
-	 * @return the aspects
-	 */
-	List<String> getAspects();
 
 	/**
 	 * Gets the multi search criteria count results.
@@ -129,22 +88,6 @@ public interface IService {
 	 * @return List of taxon
 	 */
 	List<Taxon> getNames(int id);
-
-	Integer getLeafDispositionId(String leafDispositionName);
-
-	List<String> getLeafDispositions();
-
-	Integer getNbPetaleId(String nbPetalesName);
-
-	List<String> getNbPetalesList();
-
-	Integer getPilositeTigeId(String pilositeTigeName);
-
-	List<String> getPilositeTigeList();
-
-	Integer getPilositeFeuilleId(String pilositeFeuilleName);
-
-	List<String> getPilositeFeuilleList();
 
 	/**
 	 * Gets the wikipedia link of the subject, using the gui language en, fr or

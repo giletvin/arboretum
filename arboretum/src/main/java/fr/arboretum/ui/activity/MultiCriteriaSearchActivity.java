@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.greenrobot.event.EventBus;
+import fr.arboretum.R;
 import fr.arboretum.bo.MultiCriteriaSearchFormBean;
 import fr.arboretum.event.EventType;
 import fr.arboretum.event.GenericEvent;
@@ -29,8 +30,6 @@ import fr.arboretum.ui.adapter.MyCustomAdapter;
 import fr.arboretum.ui.multicriteriasearch.MultiCriteriaSearchFieldType;
 import fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField;
 import fr.arboretum.ui.multicriteriasearch.OnSpinnersItemSelected;
-import fr.arboretum.R;
-import fr.arboretum.ui.activity.MainActivity_;
 
 /**
  * The Class MultiCriteriaSearchActivity.
@@ -152,15 +151,7 @@ public class MultiCriteriaSearchActivity extends AbstractActivity {
 			pbarSearchMulti.setVisibility(View.VISIBLE);
 		}
 
-		initSelectField(MultiCriteriaSearchFieldType.COLOUR);
-		initSelectField(MultiCriteriaSearchFieldType.NB_PETALE);
-		initSelectField(MultiCriteriaSearchFieldType.PARTICULARITE);
-		initSelectField(MultiCriteriaSearchFieldType.ASPECT);
 		initSelectField(MultiCriteriaSearchFieldType.LEAF_TYPE);
-		initSelectField(MultiCriteriaSearchFieldType.LEAF_DISPOSITION);
-		initSelectField(MultiCriteriaSearchFieldType.PILOSITE_TIGE);
-		initSelectField(MultiCriteriaSearchFieldType.PILOSITE_FEUILLE);
-		initSelectField(MultiCriteriaSearchFieldType.INFLORESCENCE);
 		initSelectField(MultiCriteriaSearchFieldType.SCIENTIFIC_FAMILY);
 		/*
 		 * updateSearchCountResults(this.ornidroidService
@@ -217,71 +208,11 @@ public class MultiCriteriaSearchActivity extends AbstractActivity {
 					this.ornidroidService.getScientificFamilies());
 
 			break;
-		case INFLORESCENCE:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_inflorescence_field);
-
-			dataAdapter = new MyCustomAdapter(this,
-					R.layout.row_spinner_icons_dropdown_list,
-					this.ornidroidService.getInflorescences(), selectFieldType);
-			break;
-		case NB_PETALE:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_nb_petale_field);
-
-			dataAdapter = new ArrayAdapter<String>(this,
-					R.layout.row_spinner_without_icons,
-					this.ornidroidService.getNbPetalesList());
-			break;
-		case PILOSITE_FEUILLE:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_pilosite_feuille_field);
-
-			dataAdapter = new MyCustomAdapter(this,
-					R.layout.row_spinner_icons_dropdown_list,
-					this.ornidroidService.getPilositeFeuilleList(),
-					selectFieldType);
-			break;
-		case PILOSITE_TIGE:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_pilosite_tige_field);
-
-			dataAdapter = new MyCustomAdapter(this,
-					R.layout.row_spinner_icons_dropdown_list,
-					this.ornidroidService.getPilositeTigeList(),
-					selectFieldType);
-			break;
-
-		case ASPECT:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_aspect_field);
-
-			dataAdapter = new MyCustomAdapter(this,
-					R.layout.row_spinner_icons_dropdown_list,
-					this.ornidroidService.getAspects(), selectFieldType);
-			break;
-		case PARTICULARITE:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_particularite_field);
-
-			dataAdapter = new MyCustomAdapter(this,
-					R.layout.row_spinner_icons_dropdown_list,
-					this.ornidroidService.getParticularites(), selectFieldType);
-			break;
 		case LEAF_TYPE:
 			field = (MultiCriteriaSelectField) findViewById(R.id.search_leaf_type_field);
 
 			dataAdapter = new MyCustomAdapter(this, R.layout.row_spinner_icons,
 					this.ornidroidService.getLeafTypes(), selectFieldType);
-			break;
-		case COLOUR:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_colour_field);
-
-			dataAdapter = new ArrayAdapter<String>(this,
-					R.layout.row_spinner_without_icons,
-					this.ornidroidService.getColours());
-			break;
-
-		case LEAF_DISPOSITION:
-			field = (MultiCriteriaSelectField) findViewById(R.id.search_leaf_disposition_field);
-
-			dataAdapter = new MyCustomAdapter(this, R.layout.row_spinner_icons,
-					this.ornidroidService.getLeafDispositions(),
-					selectFieldType);
 			break;
 
 		}

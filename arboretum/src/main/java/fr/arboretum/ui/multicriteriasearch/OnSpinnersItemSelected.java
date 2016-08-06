@@ -41,50 +41,10 @@ public class OnSpinnersItemSelected implements OnItemSelectedListener {
 					this.activity.getOrnidroidService().getScientificFamilyId(
 							parent.getItemAtPosition(pos).toString()));
 			break;
-		case INFLORESCENCE:
-			this.activity.getFormBean().setInflorescenceId(
-					this.activity.getOrnidroidService().getInflorescenceId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case ASPECT:
-			this.activity.getFormBean().setAspectId(
-					this.activity.getOrnidroidService().getAspectId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case PARTICULARITE:
-			this.activity.getFormBean().setParticulariteId(
-					this.activity.getOrnidroidService().getParticulariteId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
+
 		case LEAF_TYPE:
 			this.activity.getFormBean().setLeafTypeId(
 					this.activity.getOrnidroidService().getLeafTypeId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case NB_PETALE:
-			this.activity.getFormBean().setNbPetaleId(
-					this.activity.getOrnidroidService().getNbPetaleId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case PILOSITE_FEUILLE:
-			this.activity.getFormBean().setPilositeFeuilleId(
-					this.activity.getOrnidroidService().getPilositeFeuilleId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case PILOSITE_TIGE:
-			this.activity.getFormBean().setPilositeTigeId(
-					this.activity.getOrnidroidService().getPilositeTigeId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-		case COLOUR:
-			this.activity.getFormBean().setColourId(
-					this.activity.getOrnidroidService().getColourId(
-							parent.getItemAtPosition(pos).toString()));
-			break;
-
-		case LEAF_DISPOSITION:
-			this.activity.getFormBean().setLeafDispositionId(
-					this.activity.getOrnidroidService().getLeafDispositionId(
 							parent.getItemAtPosition(pos).toString()));
 			break;
 

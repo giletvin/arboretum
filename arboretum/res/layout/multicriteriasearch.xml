@@ -49,46 +49,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_colour_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_colour_choose"
-                custom:text="@string/search_colour" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_nb_petale_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_nb_petale_choose"
-                custom:text="@string/search_nb_petale" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_particularite_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_particularite_choose"
-                custom:text="@string/search_particularite" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_aspect_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_aspect_choose"
-                custom:text="@string/search_aspect" />
-
+         
             <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_leaf_type_field"
                 android:layout_width="fill_parent"
@@ -99,46 +60,7 @@
                 custom:spinnerPrompt="@string/search_leaf_type_choose"
                 custom:text="@string/search_leaf_type" />
 
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_leaf_disposition_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_leaf_disposition_choose"
-                custom:text="@string/search_leaf_disposition" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_pilosite_tige_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_pilosite_tige_choose"
-                custom:text="@string/search_pilosite_tige" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_pilosite_feuille_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_pilosite_feuille_choose"
-                custom:text="@string/search_pilosite_feuille" />
-
-            <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
-                android:id="@+id/search_inflorescence_field"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="20sp"
-                android:paddingLeft="10sp"
-                custom:spinnerPrompt="@string/search_inflorescence_choose"
-                custom:text="@string/search_inflorescence" />
-
+        
             <fr.arboretum.ui.multicriteriasearch.MultiCriteriaSelectField
                 android:id="@+id/search_scientific_family_field"
                 android:layout_width="fill_parent"

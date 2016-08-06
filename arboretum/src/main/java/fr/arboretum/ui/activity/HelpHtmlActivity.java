@@ -6,8 +6,8 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import android.webkit.WebView;
-import fr.arboretum.ui.multicriteriasearch.MultiCriteriaSearchFieldType;
 import fr.arboretum.R;
+import fr.arboretum.ui.multicriteriasearch.MultiCriteriaSearchFieldType;
 
 @EActivity(R.layout.help_html)
 public class HelpHtmlActivity extends AbstractActivity {
@@ -27,18 +27,7 @@ public class HelpHtmlActivity extends AbstractActivity {
 	void afterViews() {
 		StringBuffer sbuf = new StringBuffer("file:///android_asset/");
 		switch (fieldType) {
-		case ASPECT:
-			sbuf.append("help_aspect.html");
-			break;
-		case PARTICULARITE:
-			sbuf.append("help_particularite.html");
-			break;
-		case INFLORESCENCE:
-			sbuf.append("help_inflorescence.html");
-			break;
-		case NB_PETALE:
-			sbuf.append("help_nb_petale.html");
-			break;
+
 		case LEAF_TYPE:
 			sbuf.append("help_type_feuille.html");
 			break;

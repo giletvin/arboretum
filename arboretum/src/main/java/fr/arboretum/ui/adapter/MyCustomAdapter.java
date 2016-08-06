@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import fr.arboretum.R;
 import fr.arboretum.ui.activity.MultiCriteriaSearchActivity;
 import fr.arboretum.ui.multicriteriasearch.MultiCriteriaSearchFieldType;
 import fr.arboretum.ui.multicriteriasearch.SpinnerIconSelector;
-import fr.arboretum.R;
 
 /**
  * The Class MyCustomAdapter. This class allows to print icons and text in a
@@ -95,41 +95,6 @@ public class MyCustomAdapter extends ArrayAdapter<String> {
 					.getLeafTypeId(this.itemsList.get(position));
 			idRes = SpinnerIconSelector
 					.getIconResourceIdFromLeafTypeId(leafTypeId);
-			break;
-		case PILOSITE_FEUILLE:
-			final int pilositeFeuilleId = this.activity.getOrnidroidService()
-					.getPilositeFeuilleId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector
-					.getIconResourceIdFromPilositeFeuilleId(pilositeFeuilleId);
-			break;
-		case INFLORESCENCE:
-			final int inflorescenceId = this.activity.getOrnidroidService()
-					.getInflorescenceId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector
-					.getIconResourceIdFromInflorescenceId(inflorescenceId);
-			break;
-		case ASPECT:
-			final int aspectId = this.activity.getOrnidroidService()
-					.getAspectId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector.getIconResourceIdFromAspectId(aspectId);
-			break;
-		case LEAF_DISPOSITION:
-			final int leafDispositionId = this.activity.getOrnidroidService()
-					.getLeafDispositionId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector
-					.getIconResourceIdFromLeafDispositionId(leafDispositionId);
-			break;
-		case PARTICULARITE:
-			final int particulariteId = this.activity.getOrnidroidService()
-					.getParticulariteId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector
-					.getIconResourceIdFromParticulariteId(particulariteId);
-			break;
-		case PILOSITE_TIGE:
-			final int pilositeTigeId = this.activity.getOrnidroidService()
-					.getPilositeTigeId(this.itemsList.get(position));
-			idRes = SpinnerIconSelector
-					.getIconResourceIdFromPilositeTigeId(pilositeTigeId);
 			break;
 		default:
 			break;

@@ -84,8 +84,6 @@ public class DAOImpl implements IDAO {
 	/** The Constant FTS_VIRTUAL_TABLE_TAXONOMY. */
 	private static final String FTS_VIRTUAL_TABLE_TAXONOMY = "taxonomy";
 
-	private static final String ASPECT_TABLE_NAME = "aspect";
-
 	/** The Constant INNER_JOIN. */
 	private static final String INNER_JOIN = " inner join ";
 
@@ -267,37 +265,6 @@ public class DAOImpl implements IDAO {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see fr.arboretum.data.IOrnidroidDAO#getColours()
-	 */
-	public Cursor getColours() {
-		return getCursorFromListTable(COLOUR_TABLE, NAME_COLUMN_NAME,
-				I18nHelper.getLang());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.arboretum.data.IOrnidroidDAO#getCountries()
-	 */
-	public Cursor getInflorescences() {
-		return getCursorFromListTable(INFLORESCENCE_TABLE, NAME_COLUMN_NAME,
-				I18nHelper.getLang());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see fr.arboretum.data.IOrnidroidDAO#getHabitats()
-	 */
-	public Cursor getAspects() {
-		return getCursorFromListTable(ASPECT_TABLE_NAME, ORDRE_COLUMN_NAME,
-				I18nHelper.getLang());
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see fr.arboretum.data.IOrnidroidDAO#getMultiSearchCriteriaCountResults
 	 * (fr .ornidroid.bo.MultiCriteriaSearchFormBean)
 	 */
@@ -314,26 +281,6 @@ public class DAOImpl implements IDAO {
 				countQuery.toString(), null);
 		db.close();
 		return countResults;
-	}
-
-	public Cursor getLeafDispositions() {
-		return getCursorFromListTable(LEAF_DISPOSITION_TABLE, ID,
-				I18nHelper.getLang());
-	}
-
-	public Cursor getNbPetale() {
-		return getCursorFromListTable(NB_PETALE_TABLE, NAME_COLUMN_NAME,
-				I18nHelper.getLang());
-	}
-
-	public Cursor getPilositeTige() {
-		return getCursorFromListTable(PILOSITE_TIGE_TABLE, ID,
-				I18nHelper.getLang());
-	}
-
-	public Cursor getPilositeFeuille() {
-		return getCursorFromListTable(PILOSITE_FEUILLE_TABLE, ID,
-				I18nHelper.getLang());
 	}
 
 	/**
@@ -420,177 +367,23 @@ public class DAOImpl implements IDAO {
 					.append(formBean.getScientificFamilyId());
 
 		}
-		if (formBean.getLeafDispositionId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_LEAF_DISPOSITION_TABLE)
-						.append(" fl where fl.fleur_fk=fleur.id and fl.disposition_feuille_fk=")
-						.append(formBean.getLeafDispositionId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_LEAF_DISPOSITION_TABLE)
-						.append(" on " + FLEUR_LEAF_DISPOSITION_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_LEAF_DISPOSITION_TABLE
-								+ ".disposition_feuille_fk=").append(
-						formBean.getLeafDispositionId());
-			}
-		}
-		if (formBean.getAspectId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_ASPECT_TABLE)
-						.append(" fa where fa.fleur_fk=fleur.id and fa.aspect_fk=")
-						.append(formBean.getAspectId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_ASPECT_TABLE)
-						.append(" on " + FLEUR_ASPECT_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_ASPECT_TABLE + ".aspect_fk=").append(
-						formBean.getAspectId());
-			}
-
-		}
-		if (formBean.getParticulariteId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_PARTICULARITE_TABLE)
-						.append(" fp where fp.fleur_fk=fleur.id and fp.particularite_fk=")
-						.append(formBean.getParticulariteId()).append(")");
-			} else {
-
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_PARTICULARITE_TABLE)
-						.append(" on " + FLEUR_PARTICULARITE_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_PARTICULARITE_TABLE
-								+ ".particularite_fk=").append(
-						formBean.getParticulariteId());
-			}
-		}
-		if (formBean.getColourId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_COLOUR_TABLE)
-						.append(" fc where fc.fleur_fk=fleur.id and fc.couleur_fk=")
-						.append(formBean.getColourId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_COLOUR_TABLE)
-						.append(" on " + FLEUR_COLOUR_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_COLOUR_TABLE + ".couleur_fk=").append(
-						formBean.getColourId());
-			}
-		}
 
 		if (formBean.getLeafTypeId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
 			if (resultQuery) {
 				whereClauses
 						.append(" and exists (select 1 from ")
-						.append(FLEUR_LEAF_TYPE_TABLE)
-						.append(" f where f.fleur_fk=fleur.id and f.type_feuille_fk=")
+						.append(ARBRE_LEAF_TYPE_TABLE)
+						.append(" a where a.arbre_fk=arbre.id and a.type_feuille_fk=")
 						.append(formBean.getLeafTypeId()).append(")");
 			} else {
 				fromClauses
 						.append(INNER_JOIN)
-						.append(FLEUR_LEAF_TYPE_TABLE)
-						.append(" on " + FLEUR_LEAF_TYPE_TABLE
-								+ ".fleur_fk=fleur.id");
+						.append(ARBRE_LEAF_TYPE_TABLE)
+						.append(" on " + ARBRE_LEAF_TYPE_TABLE
+								+ ".arbre_fk=arbre.id");
 				whereClauses.append(
-						" AND " + FLEUR_LEAF_TYPE_TABLE + ".type_feuille_fk=")
+						" AND " + ARBRE_LEAF_TYPE_TABLE + ".type_feuille_fk=")
 						.append(formBean.getLeafTypeId());
-			}
-		}
-		if (formBean.getNbPetaleId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_NB_PETALE_TABLE)
-						.append(" f where f.fleur_fk=fleur.id and f.nb_petale_fk=")
-						.append(formBean.getNbPetaleId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_NB_PETALE_TABLE)
-						.append(" on " + FLEUR_NB_PETALE_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_NB_PETALE_TABLE + ".nb_petale_fk=")
-						.append(formBean.getNbPetaleId());
-			}
-		}
-		if (formBean.getPilositeFeuilleId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_PILOSITE_FEUILLE)
-						.append(" f where f.fleur_fk=fleur.id and f.pilosite_feuille_fk=")
-						.append(formBean.getPilositeFeuilleId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_PILOSITE_FEUILLE)
-						.append(" on " + FLEUR_PILOSITE_FEUILLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_PILOSITE_FEUILLE
-								+ ".pilosite_feuille_fk=").append(
-						formBean.getPilositeFeuilleId());
-			}
-		}
-		if (formBean.getPilositeTigeId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_PILOSITE_TIGE)
-						.append(" f where f.fleur_fk=fleur.id and f.pilosite_tige_fk=")
-						.append(formBean.getPilositeTigeId()).append(")");
-			} else {
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_PILOSITE_TIGE)
-						.append(" on " + FLEUR_PILOSITE_TIGE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_PILOSITE_TIGE + ".pilosite_tige_fk=")
-						.append(formBean.getPilositeTigeId());
-			}
-		}
-		if (formBean.getInflorescenceId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
-			if (resultQuery) {
-				// result query faster with this sql code with a subquery
-				// and exists
-				whereClauses
-						.append(" and exists (select 1 from ")
-						.append(FLEUR_INFLORESCENCE_TABLE)
-						.append(" fi where fi.fleur_fk=fleur.id and fi.inflorescence_fk=")
-						.append(formBean.getInflorescenceId()).append(")");
-			} else {
-				// count query faster with this sql code
-				fromClauses
-						.append(INNER_JOIN)
-						.append(FLEUR_INFLORESCENCE_TABLE)
-						.append(" on " + FLEUR_INFLORESCENCE_TABLE
-								+ ".fleur_fk=fleur.id");
-				whereClauses.append(
-						" AND " + FLEUR_INFLORESCENCE_TABLE
-								+ ".inflorescence_fk=").append(
-						formBean.getInflorescenceId());
-
 			}
 		}
 
@@ -802,9 +595,4 @@ public class DAOImpl implements IDAO {
 
 	}
 
-	@Override
-	public Cursor getParticularites() {
-		return getCursorFromListTable(PARTICULARITE_TABLE, NAME_COLUMN_NAME,
-				I18nHelper.getLang());
-	}
 }

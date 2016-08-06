@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import fr.arboretum.helper.BasicConstants;
-import fr.arboretum.ui.components.HelpDialog;
 import fr.arboretum.R;
+import fr.arboretum.helper.BasicConstants;
 import fr.arboretum.ui.activity.HelpHtmlActivity_;
+import fr.arboretum.ui.components.HelpDialog;
 
 /**
  * The Class MultiCriteriaSelectField.
@@ -176,18 +176,7 @@ public class MultiCriteriaSelectField extends LinearLayout implements
 		this.fieldType = fieldType;
 		boolean helpEnabled;
 		switch (this.fieldType) {
-		case INFLORESCENCE:
-			helpEnabled = true;
-			break;
-		case ASPECT:
-			helpEnabled = true;
-			break;
-		case NB_PETALE:
-			helpEnabled = true;
-			break;
-		case PARTICULARITE:
-			helpEnabled = true;
-			break;
+
 		case LEAF_TYPE:
 			helpEnabled = true;
 			break;
@@ -257,33 +246,7 @@ public class MultiCriteriaSelectField extends LinearLayout implements
 		this.helpIcon.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
 				switch (MultiCriteriaSelectField.this.fieldType) {
-				case INFLORESCENCE:
-					HelpHtmlActivity_
-							.intent(context)
-							.fieldType(
-									MultiCriteriaSearchFieldType.INFLORESCENCE)
-							.start();
-					break;
-				case ASPECT:
-					HelpHtmlActivity_.intent(context)
-							.fieldType(MultiCriteriaSearchFieldType.ASPECT)
-							.start();
 
-					break;
-				case PARTICULARITE:
-					HelpHtmlActivity_
-							.intent(context)
-							.fieldType(
-									MultiCriteriaSearchFieldType.PARTICULARITE)
-							.start();
-
-					break;
-				case NB_PETALE:
-					HelpHtmlActivity_.intent(context)
-							.fieldType(MultiCriteriaSearchFieldType.NB_PETALE)
-							.start();
-
-					break;
 				case LEAF_TYPE:
 					HelpHtmlActivity_.intent(context)
 							.fieldType(MultiCriteriaSearchFieldType.LEAF_TYPE)

@@ -105,39 +105,13 @@ public class ServiceImpl implements IService {
 
 	private Map<String, Integer> scientificFamiliesMap;
 
-	private List<String> coloursList;
-
-	private Map<String, Integer> coloursMap;
-
-	private List<String> inflorescencesList;
-
-	private Map<String, Integer> inflorescencesMap;
-	private List<String> particularitesList;
-
-	private Map<String, Integer> particularitesMap;
-
 	private Subject currentSubject;
 
 	/** The data base open helper. */
 	private final DatabaseOpenHelper dataBaseOpenHelper;
 
-	private List<String> aspectsList;
-
-	private Map<String, Integer> aspectsMap;
-
 	/** The ornidroid dao. */
 	private final IDAO ornidroidDAO;
-
-	private List<String> leafDispositions;
-
-	private Map<String, Integer> leafDispositionsMap;
-
-	private List<String> nbPetalesList;
-	private Map<String, Integer> nbPetalesMap;
-	private List<String> pilositeTigeList;
-	private Map<String, Integer> pilositeTigeMap;
-	private List<String> pilositeFeuilleList;
-	private Map<String, Integer> pilositeFeuilleMap;
 
 	/** The query result. */
 	private List<SimpleSubject> queryResult;
@@ -218,78 +192,8 @@ public class ServiceImpl implements IService {
 				.get(categoryName) : BasicConstants.DEFAULT_EMPTY_VALUE;
 	}
 
-	public Integer getColourId(final String colourName) {
-		return this.coloursMap != null ? this.coloursMap.get(colourName)
-				: BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getColours() {
-		if (this.coloursMap == null) {
-			final Cursor cursorQueryColours = this.ornidroidDAO.getColours();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQueryColours, true);
-			this.coloursMap = sfv.getMapNameId();
-			this.coloursList = sfv.getFieldsValues();
-
-		}
-		return this.coloursList;
-	}
-
-	public List<String> getInflorescences() {
-		if (this.inflorescencesMap == null) {
-			final Cursor cursorInflorescences = this.ornidroidDAO
-					.getInflorescences();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorInflorescences, true);
-			this.inflorescencesMap = sfv.getMapNameId();
-			this.inflorescencesList = sfv.getFieldsValues();
-
-		}
-		return this.inflorescencesList;
-	}
-
-	public Integer getInflorescenceId(final String inflorescenceName) {
-		return this.inflorescencesMap != null ? this.inflorescencesMap
-				.get(inflorescenceName) : BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getParticularites() {
-		if (this.particularitesMap == null) {
-			final Cursor cursorInflorescences = this.ornidroidDAO
-					.getParticularites();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorInflorescences, true);
-			this.particularitesMap = sfv.getMapNameId();
-			this.particularitesList = sfv.getFieldsValues();
-
-		}
-		return this.particularitesList;
-	}
-
-	public Integer getParticulariteId(final String particulariteName) {
-		return this.particularitesMap != null ? this.particularitesMap
-				.get(particulariteName) : BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
 	public Subject getCurrentSubject() {
 		return this.currentSubject;
-	}
-
-	public Integer getAspectId(final String aspectName) {
-		return this.aspectsMap != null ? this.aspectsMap.get(aspectName)
-				: BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getAspects() {
-		if (this.aspectsMap == null) {
-			final Cursor cursorQueryHabitats = this.ornidroidDAO.getAspects();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQueryHabitats, true);
-			this.aspectsMap = sfv.getMapNameId();
-			this.aspectsList = sfv.getFieldsValues();
-
-		}
-		return this.aspectsList;
 	}
 
 	/*
@@ -326,76 +230,6 @@ public class ServiceImpl implements IService {
 			cursor.close();
 		}
 		return result;
-	}
-
-	public Integer getLeafDispositionId(final String leafDispositionName) {
-		return this.leafDispositionsMap != null ? this.leafDispositionsMap
-				.get(leafDispositionName) : BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getLeafDispositions() {
-		if (this.leafDispositionsMap == null) {
-			final Cursor cursorQueryHabitats = this.ornidroidDAO
-					.getLeafDispositions();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQueryHabitats, true);
-			this.leafDispositionsMap = sfv.getMapNameId();
-			this.leafDispositions = sfv.getFieldsValues();
-
-		}
-		return this.leafDispositions;
-	}
-
-	public Integer getNbPetaleId(final String nbPetalesName) {
-		return this.nbPetalesMap != null ? this.nbPetalesMap.get(nbPetalesName)
-				: BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getNbPetalesList() {
-		if (this.nbPetalesMap == null) {
-			final Cursor cursorQuerySizes = this.ornidroidDAO.getNbPetale();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQuerySizes, true);
-			this.nbPetalesMap = sfv.getMapNameId();
-			this.nbPetalesList = sfv.getFieldsValues();
-
-		}
-		return this.nbPetalesList;
-	}
-
-	public Integer getPilositeTigeId(final String pilositeTigeName) {
-		return this.pilositeTigeMap != null ? this.pilositeTigeMap
-				.get(pilositeTigeName) : BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getPilositeTigeList() {
-		if (this.pilositeTigeMap == null) {
-			final Cursor cursorQuerySizes = this.ornidroidDAO.getPilositeTige();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQuerySizes, true);
-			this.pilositeTigeMap = sfv.getMapNameId();
-			this.pilositeTigeList = sfv.getFieldsValues();
-
-		}
-		return this.pilositeTigeList;
-	}
-
-	public Integer getPilositeFeuilleId(final String pilositeFeuilleName) {
-		return this.pilositeFeuilleMap != null ? this.pilositeFeuilleMap
-				.get(pilositeFeuilleName) : BasicConstants.DEFAULT_EMPTY_VALUE;
-	}
-
-	public List<String> getPilositeFeuilleList() {
-		if (this.pilositeFeuilleMap == null) {
-			final Cursor cursorQuerySizes = this.ornidroidDAO
-					.getPilositeFeuille();
-			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
-					cursorQuerySizes, true);
-			this.pilositeFeuilleMap = sfv.getMapNameId();
-			this.pilositeFeuilleList = sfv.getFieldsValues();
-
-		}
-		return this.pilositeFeuilleList;
 	}
 
 	public String getWikipediaLink(final Subject currentSubject,
