@@ -47,7 +47,11 @@ public class OnSpinnersItemSelected implements OnItemSelectedListener {
 					this.activity.getOrnidroidService().getLeafTypeId(
 							parent.getItemAtPosition(pos).toString()));
 			break;
-
+case LEAF_DISPOSITION:
+			this.activity.getFormBean().setLeafDispositionId(
+					this.activity.getOrnidroidService().getLeafDispositionId(
+							parent.getItemAtPosition(pos).toString()));
+			break;
 		}
 
 		this.activity.updateSearchCountResults(this.activity

@@ -5,6 +5,7 @@ package fr.arboretum.ui.multicriteriasearch;
  */
 public enum MultiCriteriaSearchFieldType {
 
-	LEAF_TYPE, SCIENTIFIC_FAMILY;
+	LEAF_TYPE, 	LEAF_DISPOSITION,
+	SCIENTIFIC_FAMILY;
 
 }

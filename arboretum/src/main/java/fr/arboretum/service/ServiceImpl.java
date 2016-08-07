@@ -112,6 +112,9 @@ public class ServiceImpl implements IService {
 
 	/** The ornidroid dao. */
 	private final IDAO ornidroidDAO;
+	private List<String> leafDispositions;
+
+	private Map<String, Integer> leafDispositionsMap;
 
 	/** The query result. */
 	private List<SimpleSubject> queryResult;
@@ -231,7 +234,23 @@ public class ServiceImpl implements IService {
 		}
 		return result;
 	}
+public Integer getLeafDispositionId(final String leafDispositionName) {
+		return this.leafDispositionsMap != null ? this.leafDispositionsMap
+				.get(leafDispositionName) : BasicConstants.DEFAULT_EMPTY_VALUE;
+	}
 
+	public List<String> getLeafDispositions() {
+		if (this.leafDispositionsMap == null) {
+			final Cursor cursorQueryHabitats = this.ornidroidDAO
+					.getLeafDispositions();
+			final SelectFieldsValue sfv = loadSelectFieldsFromCursor(
+					cursorQueryHabitats, true);
+			this.leafDispositionsMap = sfv.getMapNameId();
+			this.leafDispositions = sfv.getFieldsValues();
+
+		}
+		return this.leafDispositions;
+	}
 	public String getWikipediaLink(final Subject currentSubject,
 			final SupportedLanguage lang) {
 		final StringBuffer sbuf = new StringBuffer();

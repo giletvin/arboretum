@@ -96,6 +96,12 @@ public class MyCustomAdapter extends ArrayAdapter<String> {
 			idRes = SpinnerIconSelector
 					.getIconResourceIdFromLeafTypeId(leafTypeId);
 			break;
+		case LEAF_DISPOSITION:
+			final int leafDispositionId = this.activity.getOrnidroidService()
+					.getLeafDispositionId(this.itemsList.get(position));
+			idRes = SpinnerIconSelector
+					.getIconResourceIdFromLeafDispositionId(leafDispositionId);
+			break;
 		default:
 			break;
 

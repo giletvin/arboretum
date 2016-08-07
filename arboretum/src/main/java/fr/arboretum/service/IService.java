@@ -88,6 +88,8 @@ public interface IService {
 	 * @return List of taxon
 	 */
 	List<Taxon> getNames(int id);
+	Integer getLeafDispositionId(String leafDispositionName);
+	List<String> getLeafDispositions();
 
 	/**
 	 * Gets the wikipedia link of the subject, using the gui language en, fr or

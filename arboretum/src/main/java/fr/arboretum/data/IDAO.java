@@ -12,6 +12,7 @@ import fr.arboretum.bo.SimpleSubject;
 public interface IDAO {
 
 	public static final String LEAF_TYPE_TABLE = "type_feuille";
+	public static final String ARBRE_LEAF_DISPOSITION_TABLE = "arbre_disposition_feuille";
 
 	public static final String ARBRE_LEAF_TYPE_TABLE = "arbre_type_feuille";
 
@@ -27,6 +28,7 @@ public interface IDAO {
 	/** The Constant NAME_FIELD_NAME. */
 	public static final String NAME_COLUMN_NAME = "name";
 	public static final String ORDRE_COLUMN_NAME = "ordre";
+	public static final String LEAF_DISPOSITION_TABLE = "disposition_feuille";
 
 	public static final String SCIENTIFIC_FAMILY_NAME_COLUMN = "scientific_family";
 
@@ -91,6 +93,8 @@ public interface IDAO {
 	 * @return the multi search criteria count results
 	 */
 	int getMultiSearchCriteriaCountResults(MultiCriteriaSearchFormBean formBean);
+
+	Cursor getLeafDispositions();
 
 	/**
 	 * Gets the matching birds.

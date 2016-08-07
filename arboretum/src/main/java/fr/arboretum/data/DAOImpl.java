@@ -283,6 +283,11 @@ public class DAOImpl implements IDAO {
 		return countResults;
 	}
 
+	public Cursor getLeafDispositions() {
+		return getCursorFromListTable(LEAF_DISPOSITION_TABLE, ID,
+				I18nHelper.getLang());
+	}
+
 	/**
 	 * Gets the cursor from list table with ID AND NAME column NAMEs (habitat,
 	 * category).
@@ -366,6 +371,25 @@ public class DAOImpl implements IDAO {
 					" AND " + SUBJECT_TABLE + ".scientific_family_fk = ")
 					.append(formBean.getScientificFamilyId());
 
+		}
+		if (formBean.getLeafDispositionId() != BasicConstants.DEFAULT_EMPTY_VALUE) {
+			if (resultQuery) {
+				whereClauses
+						.append(" and exists (select 1 from ")
+						.append(ARBRE_LEAF_DISPOSITION_TABLE)
+						.append(" ad where ad.arbre_fk=arbre.id and ad.disposition_feuille_fk=")
+						.append(formBean.getLeafDispositionId()).append(")");
+			} else {
+				fromClauses
+						.append(INNER_JOIN)
+						.append(ARBRE_LEAF_DISPOSITION_TABLE)
+						.append(" on " + ARBRE_LEAF_DISPOSITION_TABLE
+								+ ".arbre_fk=arbre.id");
+				whereClauses.append(
+						" AND " + ARBRE_LEAF_DISPOSITION_TABLE
+								+ ".disposition_feuille_fk=").append(
+						formBean.getLeafDispositionId());
+			}
 		}
 
 		if (formBean.getLeafTypeId() != BasicConstants.DEFAULT_EMPTY_VALUE) {

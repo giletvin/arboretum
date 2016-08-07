@@ -48,6 +48,18 @@ create table arbre_type_feuille(
 	type_feuille_fk
 );
 
+create table disposition_feuille(
+		id integer,
+		name,
+		lang
+);
+
+create table arbre_disposition_feuille(
+	arbre_fk,
+	disposition_feuille_fk
+);
+
+
 create table bord_feuille(
 	id integer,
 	name,

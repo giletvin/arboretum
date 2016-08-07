@@ -174,6 +174,7 @@ $array_scientific_family = array();
 $array_type_aiguille = array();
 $array_type_fruit_conifere = array();
 $array_type_feuille = array();
+$array_disposition_feuille = array();
 $array_bord_feuille = array();
 $array_forme_feuille = array();
 $array_caracteristique_feuille = array();
@@ -219,7 +220,17 @@ if (($handle = fopen("Arboretum.csv", "r")) !== FALSE) {
 				$indexes_type_aiguille=array();
 				array_push($indexes_type_aiguille,-1);
 			}
-			$indexes_type_feuille=collectData($array_type_feuille,$data[$type_feuille_index]);
+
+			//type de feuille : analyser aussi la disposition
+			$data_cellule_type_disposition_feuille = explode(" ", $data[$type_feuille_index]);
+			//type de feuille
+			$indexes_type_feuille=collectData($array_type_feuille,$data_cellule_type_disposition_feuille[0]);
+			if (count($data_cellule_type_disposition_feuille>1)){
+				print_r($data_cellule_type_disposition_feuille);
+				//dispositon des feuilles
+				$indexes_disposition_feuille=collectData($array_disposition_feuille,$data_cellule_type_disposition_feuille[1]);
+			}
+
 			$indexes_bord_feuille=collectData($array_bord_feuille,$data[$bord_feuille_index]);
 			$indexes_forme_feuille=collectData($array_forme_feuille,$data[$forme_feuille_index]);
 			$indexes_caracteristique_feuille=collectData($array_caracteristique_feuille,$data[$caracteristique_feuille_index]);
@@ -262,6 +273,9 @@ if (($handle = fopen("Arboretum.csv", "r")) !== FALSE) {
 			if ($data[$type_feuille_index]!=''){
 				foreach ($indexes_type_feuille as $key => $value){
 					array_push($sql_queries,"insert into arbre_type_feuille (arbre_fk, type_feuille_fk) values (".$idArbre.",".$value.");");
+				}
+				foreach ($indexes_disposition_feuille as $key => $value){
+					array_push($sql_queries,"insert into arbre_disposition_feuille (arbre_fk, disposition_feuille_fk) values (".$idArbre.",".$value.");");
 				}
 			}
 
@@ -340,6 +354,11 @@ foreach ($array_type_fruit_conifere as $key => $value){
 
 foreach ($array_type_feuille as $key => $value){
 	$sql_insert_query = "INSERT INTO type_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
+	fwrite($handlerTableReferentiel, $sql_insert_query);
+}
+
+foreach ($array_disposition_feuille as $key => $value){
+	$sql_insert_query = "INSERT INTO disposition_feuille(id,name,lang) VALUES(".$key.",\"".$value."\",'fr');\n";
 	fwrite($handlerTableReferentiel, $sql_insert_query);
 }
 

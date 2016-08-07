@@ -152,6 +152,7 @@ public class MultiCriteriaSearchActivity extends AbstractActivity {
 		}
 
 		initSelectField(MultiCriteriaSearchFieldType.LEAF_TYPE);
+		initSelectField(MultiCriteriaSearchFieldType.LEAF_DISPOSITION);
 		initSelectField(MultiCriteriaSearchFieldType.SCIENTIFIC_FAMILY);
 		/*
 		 * updateSearchCountResults(this.ornidroidService
@@ -214,6 +215,14 @@ public class MultiCriteriaSearchActivity extends AbstractActivity {
 			dataAdapter = new MyCustomAdapter(this, R.layout.row_spinner_icons,
 					this.ornidroidService.getLeafTypes(), selectFieldType);
 			break;
+					case LEAF_DISPOSITION:
+			field = (MultiCriteriaSelectField) findViewById(R.id.search_leaf_disposition_field);
+
+			dataAdapter = new MyCustomAdapter(this, R.layout.row_spinner_icons,
+					this.ornidroidService.getLeafDispositions(),
+					selectFieldType);
+			break;
+			
 
 		}
 		field.setFieldType(selectFieldType);
